@@ -1,8 +1,6 @@
 # ChromeSidebarToggleRaycast
 
-
-https://github.com/user-attachments/assets/4c208fe2-7f23-447f-9b6f-94fc2a1eca66
-
+https://github.com/user-attachments/assets/7e155801-40e3-4101-a532-8856a9ad3aa0
 
 A [Raycast](https://www.raycast.com/) script command that toggles Chrome's tab sidebar with a single keystroke.
 
