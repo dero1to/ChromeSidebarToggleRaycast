@@ -2,69 +2,69 @@
 
 https://github.com/user-attachments/assets/7e155801-40e3-4101-a532-8856a9ad3aa0
 
-A [Raycast](https://www.raycast.com/) script command that toggles Chrome's tab sidebar with a single keystroke.
+[Raycast](https://www.raycast.com/) のスクリプトコマンドで、Chrome のタブサイドバーをキー一つで切り替えます。
 
-Chrome's "Expand tabs" / "Collapse tabs" button has no keyboard shortcut. This script uses the macOS Accessibility API to find and press it programmatically — no coordinate hacking, works on any screen or resolution.
+Chrome の「タブを展開」/「タブを折りたたむ」ボタンにはキーボードショートカットがありません。このスクリプトは macOS のアクセシビリティ API を使ってボタンをプログラム的に検出・クリックします。座標ハックは不要で、どの画面・解像度でも動作します。
 
-## Requirements
+## 必要なもの
 
-- macOS 13+
+- macOS 13 以上
 - [Raycast](https://www.raycast.com/)
-- Google Chrome with the tab sidebar enabled
-- Xcode Command Line Tools (`xcode-select --install`)
+- タブサイドバーが有効な Google Chrome
+- Xcode Command Line Tools（`xcode-select --install`）
 
-## Installation
+## インストール
 
-1. Clone the repo:
+1. リポジトリをクローン：
    ```bash
    git clone https://github.com/RotulPlastik/ChromeSidebarToggleRaycast.git
    cd ChromeSidebarToggleRaycast
    ```
 
-2. Build the binary:
+2. バイナリをビルド：
    ```bash
    ./build.sh
    ```
-   This compiles `toggle-chrome-sidebar.swift` and places the binary at `~/raycast-scripts/bin/toggle-chrome-sidebar`.
+   `toggle-chrome-sidebar.swift` をコンパイルし、バイナリを `~/raycast-scripts/bin/toggle-chrome-sidebar` に配置します。
 
-3. Copy the Raycast wrapper:
+3. Raycast ラッパーをコピー：
    ```bash
    cp toggle-chrome-sidebar.sh ~/raycast-scripts/
    ```
 
-4. Add `~/raycast-scripts/` as a Script Command directory in Raycast (Settings > Extensions > Script Commands > Add Directories) if not already added.
+4. Raycast の設定（Settings > Extensions > Script Commands > Add Directories）で `~/raycast-scripts/` をスクリプトコマンドディレクトリとして追加します（未追加の場合）。
 
-5. Grant Raycast **Accessibility** access in System Settings > Privacy & Security > Accessibility.
+5. システム設定 > プライバシーとセキュリティ > アクセシビリティ で、Raycast に**アクセシビリティ**権限を付与します。
 
-## Usage
+## 使い方
 
-Open Raycast and search for **"Toggle Chrome Sidebar"**, or assign it a hotkey in Raycast settings.
+Raycast を開いて **「Toggle Chrome Sidebar」** を検索するか、Raycast の設定でホットキーを割り当ててください。
 
-## How it works
+## 仕組み
 
-1. Finds Chrome via its bundle identifier (`com.google.Chrome`)
-2. Walks Chrome's Accessibility tree (`AXUIElement`) looking for a button titled "Expand tabs" or "Collapse tabs"
-3. Presses the button via `AXUIElementPerformAction`
+1. バンドル識別子（`com.google.Chrome`）で Chrome を検出
+2. Chrome のアクセシビリティツリー（`AXUIElement`）を探索し、「Expand tabs」または「Collapse tabs」というタイトルのボタンを検索
+3. `AXUIElementPerformAction` でボタンをクリック
 
-The script is pre-compiled to a native binary for near-instant execution (~10ms vs ~1.5s for interpreted Swift).
+スクリプトはネイティブバイナリに事前コンパイルされるため、ほぼ即座に実行されます（インタプリタ実行の約 1.5 秒に対して約 10ms）。
 
-## Files
+## ファイル構成
 
-| File | Description |
+| ファイル | 説明 |
 |------|-------------|
-| `toggle-chrome-sidebar.swift` | Swift source — the main logic |
-| `toggle-chrome-sidebar.sh` | Bash wrapper with Raycast metadata (calls the compiled binary) |
-| `build.sh` | Compiles the Swift source to `~/raycast-scripts/bin/` |
-| `chrome-mouse-offset.swift` | Bonus utility — reports mouse position relative to Chrome's window (useful for coordinate-based automation) |
+| `toggle-chrome-sidebar.swift` | Swift ソース — メインロジック |
+| `toggle-chrome-sidebar.sh` | Raycast メタデータ付き Bash ラッパー（コンパイル済みバイナリを呼び出す） |
+| `build.sh` | Swift ソースを `~/raycast-scripts/bin/` にコンパイル |
+| `chrome-mouse-offset.swift` | おまけユーティリティ — Chrome ウィンドウに対するマウス座標を表示（座標ベースの自動化に便利） |
 
-## Rebuilding
+## 再ビルド
 
-After editing `toggle-chrome-sidebar.swift`:
+`toggle-chrome-sidebar.swift` を編集した後：
 
 ```bash
 ./build.sh
 ```
 
-## License
+## ライセンス
 
 MIT
