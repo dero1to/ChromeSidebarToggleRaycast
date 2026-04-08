@@ -12,7 +12,7 @@
 import AppKit
 import ApplicationServices
 
-let targetTitles = ["Expand tabs", "Collapse tabs"]
+let targetTitles = ["Expand tabs", "Collapse tabs", "タブを開く", "タブを閉じる"]
 
 guard let chromeApp = NSRunningApplication.runningApplications(
     withBundleIdentifier: "com.google.Chrome"
